@@ -7,7 +7,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
-const feedbackReducer = (state=[ ], action) => {
+const getFeedbackReducer = (state=[ ], action) => {
     console.log('In Get feedbackReducer');
     if (action.type === 'GET_FEEDBACK') {
         state = action.payload;
@@ -15,10 +15,36 @@ const feedbackReducer = (state=[ ], action) => {
     return state;
 }
 
+const feedbackReducer = (state=[ ], action) => {
+    if (action.type === 'ADD_FEELING') {
+        //add feeling to state
+        console.log('feeling: ',action.payload);
+        state = action.payload 
+    } else if (action.type === 'ADD_UNDERSTANDING') {
+        console.log('understanding: ',action.payload);
+        state = {...state, ...action.payload}
+        //add customer to state
+    } else if (action.type === 'ADD_SUPPORT') {
+        console.log('support: ',action.payload);
+        state = {...state, ...action.payload}
+        //add customer to state
+    } else if (action.type === 'ADD_COMMENT') {
+        console.log('comment: ',action.payload);
+        state = {...state, ...action.payload}
+        //add customer to state
+    } else if (action.type === 'CHECKOUT') {
+        //send state to db as order
+        
+        state = {};
+    }
+    return state
+}
+
 // Store
 const storeInstance = createStore(
     combineReducers({
-      feedbackReducer
+        getFeedbackReducer,
+        feedbackReducer
     }),
     applyMiddleware(logger)
   )

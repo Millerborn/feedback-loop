@@ -4,7 +4,10 @@ import './App.css';
 // import { HashRouter as Router, Route, Link } from "react-router-dom";
 import Header from '../Header/Header';
 import { connect } from 'react-redux';
-
+import FeelingFeedback from '../FeelingFeedback/FeelingFeedback';
+import Understanding from '../Understanding/Understanding';
+import Support from '../Support/Support';
+import Comments from '../comments/Comments';
 
 class App extends Component {
 
@@ -25,6 +28,29 @@ class App extends Component {
       })  
     }
 
+    onSubmit = (event) => {
+      event.preventDefault();
+      console.log(this.state);
+      axios({
+        method: 'POST',
+        url: '/feedback',
+        data: { newElement: this.state }
+      })
+      .then( (response) => {
+        this.getElements();
+        this.clearInputs();
+      })
+      .catch( (error) => {
+        alert('Error onSubmit')
+      })
+    }
+
+      // handle feeling on click next step button
+      handleFeelingClick = () => {
+        console.log(this.state.feedback);  
+        this.props.dispatch( {type: 'ADD_FEELING', payload: this.state} );
+        this.props.history.push('/1')
+        } 
 
 
   render() {
@@ -32,31 +58,21 @@ class App extends Component {
       // <Router>
         <div className="App">
           <Header />
-          {/* <nav>
-            <ul>
-              <li><Link to="/">Page 1</Link></li>
-              <li><Link to="/2">Page 2</Link></li>
-              <li><Link to="/3">Page 3</Link></li>
-              <li><Link to="/4">Page 4</Link></li>
-              <li><Link to="/AdminView">Admin View</Link></li>
-            </ul>
-          </nav>
-          <section>
-            <Route exact path="/" component={this.getFeedback} />
-            <Route path="/2" component={CustomerInfo} />
-            <Route path="/3" component={Checkout} />
-            <Route path="/4" component={Checkout} />
-            <Route path="/AdminView" component={AdminView} />
-          </section> */}
-          <section>
+          {/* <FeelingFeedback onSubmit={this.onSubmit} handleFeelingClick={this.handleFeelingClick}/> */}
+            <Route exact path="/" component={FeelingFeedback} />
+            <Route path="/2" component={Understanding} />
+            <Route path="/3" component={Support} />
+            <Route path="/4" component={Comments} />
+            <Route path="/5" component={AdminView} />
+          {/* <section>
           <h2>All Feedback</h2>
           <ul>
             {this.props.reduxState.feedbackReducer.map(
               feedback => <li key={feedback.id}>{feedback.comments}</li>
             )}
           </ul>
-          </section>
-
+          </section> */}
+          
         </div>
       // </Router>
     );
