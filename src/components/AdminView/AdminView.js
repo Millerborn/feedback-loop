@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './AdminView.css'
+import './AdminView.css';
+import { connect } from 'react-redux';
+
 
 class AdminView extends Component {
-state= {
+state = {
     feedback: [],
 }
     getFeedback = () => {
@@ -20,6 +22,21 @@ state= {
     componentDidMount() {
         this.getFeedback();
     }
+
+    deleteFeedback = (id) => {
+        // call axios
+        axios({
+          method: 'DELETE',
+          url: `/feedback/${id}`
+        })
+        .then( (response) => {
+            console.log('Feedback deleted', response);
+            this.props.getFeedback();
+        })
+        .catch( (error) => {
+          alert('Error in deleteFeedback', error);
+        })
+      }
 
     render() {
         return (
@@ -41,7 +58,8 @@ state= {
                         <td>{feedback.understanding}</td>
                         <td>{feedback.support}</td>
                         <td>{feedback.comments}</td>
-                        <td>{feedback.delete}</td>
+                        <td><button onClick={() => {this.deleteFeedback(feedback.id)} 
+                            }>Delete</button></td>
                         </tr>))}
                     </tbody>
                 </table>
@@ -50,4 +68,6 @@ state= {
     }
 }
 
-export default AdminView;
+const mapReduxStateToProps = ( reduxState ) => ({ reduxState });
+
+export default connect(mapReduxStateToProps)(AdminView);
