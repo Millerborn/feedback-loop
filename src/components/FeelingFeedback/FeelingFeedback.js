@@ -8,27 +8,33 @@ class FeelingFeedback extends Component {
         feeling: ''
     }
 
-    handleChange = (id, feeling) => {
-        console.log('running Handle Change');
+    // handel change for input of feeling
+    handleChange = (event) => {
+        console.log('running Handle Change', event.target.value);
         this.setState({
-          feedback: [{
-              id: id,
-          }],
-          feeling: feeling
+          ...this.state,
+          feeling: event.target.value
         });
-        console.log(this.state);
-      }
- 
+    }
+
+    // handle on click to go to next page and dispatch feeling to state in index
+    handleNextClick = (event) => {
+        event.preventDefault();
+        console.log('in handel click push', this.state.feeling);
+        this.props.dispatch( {type: 'ADD_FEELING', payload: this.state} );
+        this.props.history.push('/2')
+    } 
+
   render() {
     return (
         <div>
             <section>
                 <p>How are you feeling today?</p>
-                <input onChange={this.handleChange} value={this.state.feeling}/>
             </section>
-            <section>
-            <button id="addButton" onClick={this.props.onSubmit}>Next</button>
-            </section>
+            <form onSubmit={this.handleNextClick}>
+            <input onChange={this.handleChange} value={this.state.feeling} />
+            <button type="submit">Next</button>
+            </form>
         </div>
     );
   }

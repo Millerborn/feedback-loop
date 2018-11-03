@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
 const getFeedbackReducer = (state=[ ], action) => {
-    console.log('In Get feedbackReducer');
+    // console.log('In Get feedbackReducer');
     if (action.type === 'GET_FEEDBACK') {
         state = action.payload;
     }
@@ -18,7 +18,7 @@ const getFeedbackReducer = (state=[ ], action) => {
 const feedbackReducer = (state=[ ], action) => {
     if (action.type === 'ADD_FEELING') {
         //add feeling to state
-        console.log('feeling: ',action.payload);
+        console.log('feeling: ', action.payload);
         state = action.payload 
     } else if (action.type === 'ADD_UNDERSTANDING') {
         console.log('understanding: ',action.payload);
@@ -34,9 +34,9 @@ const feedbackReducer = (state=[ ], action) => {
         //add customer to state
     } else if (action.type === 'CHECKOUT') {
         //send state to db as order
-        
-        state = {};
+        state = [ ];
     }
+    console.log('feedbackReducer state: ', state);
     return state
 }
 

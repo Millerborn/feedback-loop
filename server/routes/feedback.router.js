@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool');
 
+// GET route to get information from database to admin view
 router.get('/', (req, res) => {
     console.log('GET /feedback');
     pool.query('SELECT * from "feedback";').then((result) => {
@@ -12,40 +13,23 @@ router.get('/', (req, res) => {
     });
 })
 
-// POST new feedback
-router.post('/', async (req, res) => {
-    const review = await pool.connect();
-    try {
-        const {
-            feeling,
-            understanding,
-            support,
-            comments
-        } = req.body;
-        await review.query('BEGIN')
-        const feedbackInsertResults = await review.query(`INSERT INTO "feedback" ("feeling", "understanding", "support", "comments")
-        VALUES ($1, $2, $3, $4)
-        RETURNING id;`, [feeling, understanding, support, comments]);
-        const reviewId = orderInsertResults.rows[0].id;
-        
-        await Promise.all(pizzas.map(pizza => {
-            const insertLineItemText = `INSERT INTO "line_item" ("order_id", "pizza_id", "quantity") VALUES ($1, $2, $3)`;
-            const insertLineItemValues = [reviewId, pizza.id, pizza.quantity];
-            return client.query(insertLineItemText, insertLineItemValues);
-        }));
+//  POST route to add new feedback to the database
+router.post('/', (req, res) => {
+    const feedback = req.body;
+    const sqlText = `INSERT INTO feedback (feeling, understanding, support, comments) VALUES 
+  ($1, $2, $3, $4)`;
+    pool.query(sqlText, [feedback.feeling, feedback.understanding, feedback.support, feedback.comments])
+        .then((result) => {
+            console.log(`Added to the database`, feedback);
+            res.sendStatus(201);
+        })
+        .catch((error) => {
+            console.log(`Error making database query ${sqlText}`, error);
+            res.sendStatus(500);
+        })
+})
 
-        await review.query('COMMIT')
-        res.sendStatus(201);
-    } catch (error) {
-        await review.query('ROLLBACK')
-        console.log('Error POST /feedback', error);
-        res.sendStatus(500);
-    } finally {
-        review.release()
-    }
-});
-
-// DELETE feedback
+// DELETE feedback to use in admin view
 router.delete('/:id', (req, res) => {
     pool.query('DELETE FROM "feedback" WHERE id=$1', [req.params.id]).then((result) => {
         res.sendStatus(200);

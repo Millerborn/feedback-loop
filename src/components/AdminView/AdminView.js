@@ -7,7 +7,12 @@ class Understanding extends Component {
   render() {
     return (
         <div className="App">
-
+            <section>
+                <p>Admin</p>
+                <input />
+            </section>
+            <section>
+            </section>        
         </div>
     );
   }
