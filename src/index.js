@@ -17,25 +17,26 @@ const getFeedbackReducer = (state=[ ], action) => {
 
 const feedbackReducer = (state=[ ], action) => {
     if (action.type === 'ADD_FEELING') {
-        //add feeling to state
+        //add feeling feedback to state
         console.log('feeling: ', action.payload);
         state = action.payload 
     } else if (action.type === 'ADD_UNDERSTANDING') {
         console.log('understanding: ',action.payload);
         state = {...state, ...action.payload}
-        //add customer to state
+        //add understanding feedback to state
     } else if (action.type === 'ADD_SUPPORT') {
         console.log('support: ',action.payload);
         state = {...state, ...action.payload}
-        //add customer to state
-    } else if (action.type === 'ADD_COMMENT') {
+        //add support feedback to state
+    } else if (action.type === 'ADD_COMMENTS') {
         console.log('comment: ',action.payload);
         state = {...state, ...action.payload}
-        //add customer to state
-    } else if (action.type === 'CHECKOUT') {
-        //send state to db as order
-        state = [ ];
-    }
+        //add comment feedback to state
+    } 
+    // else if (action.type === 'ADD_FEEDBACK') {
+    //     //send state to db as feedback
+    //     state = [ ];
+    // }
     console.log('feedbackReducer state: ', state);
     return state
 }

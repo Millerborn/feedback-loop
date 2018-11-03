@@ -1,0 +1,22 @@
+table {
+    margin: 0 auto;
+    text-align: left;
+    width: 80%;
+}
+
+th, td {
+    padding: 20px;
+}
+
+thead {
+    background-color: #d4d4d4;
+}
+
+tr:nth-child(2n+2) {
+    background-color: #ececec;
+}
+
+tbody > tr:hover {
+    background-color: grey;
+    color: #ffffff;
+}
