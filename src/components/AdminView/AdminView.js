@@ -31,7 +31,7 @@ state = {
         })
         .then( (response) => {
             console.log('Feedback deleted', response);
-            this.props.getFeedback();
+            this.getFeedback();
         })
         .catch( (error) => {
           alert('Error in deleteFeedback', error);
