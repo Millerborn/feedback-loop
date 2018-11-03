@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './AdminView.css';
 import { connect } from 'react-redux';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 
 class AdminView extends Component {
@@ -9,6 +11,23 @@ class AdminView extends Component {
     state = {
         feedback: [],
     }
+
+    // submit Alert
+    submit = (id) => {
+        confirmAlert({
+          title: 'Confirm to delete',
+          message: 'Are you sure?',
+          buttons: [
+            {
+              label: 'Yes',
+              onClick: () => this.deleteFeedback(id),
+            },
+            {
+              label: 'No',
+            }
+          ]
+        })
+      };
 
     // GET feedback from server
     getFeedback = () => {
@@ -63,7 +82,7 @@ class AdminView extends Component {
                         <td>{feedback.understanding}</td>
                         <td>{feedback.support}</td>
                         <td>{feedback.comments}</td>
-                        <td><button onClick={() => {this.deleteFeedback(feedback.id)} 
+                        <td><button onClick={() => {this.submit(feedback.id)} 
                             }>Delete</button></td>
                         </tr>))}
                     </tbody>
