@@ -5,9 +5,12 @@ import { connect } from 'react-redux';
 
 
 class AdminView extends Component {
-state = {
-    feedback: [],
-}
+
+    state = {
+        feedback: [],
+    }
+
+    // GET feedback from server
     getFeedback = () => {
         axios.get('/feedback')
         .then((response) => {
@@ -19,10 +22,7 @@ state = {
         })
     }
 
-    componentDidMount() {
-        this.getFeedback();
-    }
-
+    // DELETE feedback from server
     deleteFeedback = (id) => {
         // call axios
         axios({
@@ -37,6 +37,11 @@ state = {
           alert('Error in deleteFeedback', error);
         })
       }
+
+    // load feedback from server
+    componentDidMount() {
+        this.getFeedback();
+    }
 
     render() {
         return (

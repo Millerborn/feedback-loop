@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-
 class Support extends Component {
     
     state = {
@@ -17,7 +15,7 @@ class Support extends Component {
         });
     }
 
-    // handle on click to go to next page and dispatch support to state in index
+    // handle on click, to go to next page and dispatch support to state in index
     handleNextClick = (event) => {
         event.preventDefault();
         console.log('in handel click push', this.state.support);
@@ -28,6 +26,7 @@ class Support extends Component {
   render() {
     return (
         <div>
+            <h3>3 of 4 pages</h3>
             <section>
                 <p>How well are you being supported?</p>
             </section>

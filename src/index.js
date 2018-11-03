@@ -32,11 +32,7 @@ const feedbackReducer = (state=[ ], action) => {
         console.log('comment: ',action.payload);
         state = {...state, ...action.payload}
         //add comment feedback to state
-    } 
-    // else if (action.type === 'ADD_FEEDBACK') {
-    //     //send state to db as feedback
-    //     state = [ ];
-    // }
+    }
     console.log('feedbackReducer state: ', state);
     return state
 }

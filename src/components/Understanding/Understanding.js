@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-
 class Understanding extends Component {
     
     state = {
@@ -17,7 +15,7 @@ class Understanding extends Component {
         });
     }
 
-    // handle on click to go to next page and dispatch understanding to state in index
+    // handle on click, go to next page and dispatch understanding to state in index
     handleNextClick = (event) => {
         event.preventDefault();
         console.log('in handel click push', this.state.understanding);
@@ -28,6 +26,7 @@ class Understanding extends Component {
   render() {
     return (
         <div>
+            <h3>2 of 4 pages</h3>
             <section>
                 <p>How well are you understanding the content?</p>
             </section>
