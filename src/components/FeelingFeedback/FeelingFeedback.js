@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+// import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import './FeelingFeedback.css';
+
 class FeelingFeedback extends Component {
     
     state = {
@@ -25,16 +33,20 @@ class FeelingFeedback extends Component {
 
   render() {
     return (
-        <div>
-            <h3>1 of 4 pages</h3>
-            <section>
-                <p>How are you feeling today?</p>
-            </section>
-            <form onSubmit={this.handleNextClick}>
-            <input onChange={this.handleChange} value={this.state.feeling} />
-            <button type="submit">Next</button>
-            </form>
-        </div>
+        <Card id="card">
+            <CardContent>
+                <h3 id="cardHeader">1 of 4 pages</h3>
+                <section>
+                    <h4>How are you feeling today?</h4>
+                </section>
+                <form onSubmit={this.handleNextClick}>
+                <input onChange={this.handleChange} value={this.state.feeling} />
+                <CardActions>
+                <Button id="button" size="small" type="submit">Next</Button>
+                </CardActions>
+                </form>
+            </CardContent>
+        </Card>
     );
   }
 }

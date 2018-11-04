@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import './Support.css';
+
 class Support extends Component {
     
     state = {
@@ -25,16 +32,18 @@ class Support extends Component {
 
   render() {
     return (
-        <div>
-            <h3>3 of 4 pages</h3>
-            <section>
-                <p>How well are you being supported?</p>
-            </section>
-            <form onSubmit={this.handleNextClick}>
-            <input onChange={this.handleChange} value={this.state.support} />
-            <button type="submit">Next</button>
-            </form>
-        </div>
+        <Card id="card">
+            <CardContent>
+                <h3 id="cardHeader">3 of 4 pages</h3>
+                <section><p>How well are you being supported?</p></section>
+                <form onSubmit={this.handleNextClick}>
+                    <input onChange={this.handleChange} value={this.state.support} />
+                    <CardActions>
+                        <Button id="button" size="small" type="submit">Next</Button>
+                    </CardActions>            
+                </form>
+            </CardContent>
+        </Card>
     );
   }
 }

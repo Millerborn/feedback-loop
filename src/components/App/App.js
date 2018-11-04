@@ -9,11 +9,12 @@ import Support from '../Support/Support';
 import Comments from '../Comments/Comments';
 import AdminView from '../AdminView/AdminView';
 import ThankYou from '../ThankYou/ThankYou';
+
 class App extends Component {
 
   render() {
     return (
-      <Router>
+      <Router id="outerRouter">
         <div className="App">
           <Header />
             <Route exact path="/" component={FeelingFeedback} />
