@@ -8,7 +8,6 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
 const getFeedbackReducer = (state=[ ], action) => {
-    // console.log('In Get feedbackReducer');
     if (action.type === 'GET_FEEDBACK') {
         state = action.payload;
     }
@@ -33,7 +32,6 @@ const feedbackReducer = (state= [ ], action) => {
         state = {...state, ...action.payload}
         //add comment feedback to state
     }
-    console.log('feedbackReducer state: ', state);
     return state
 }
 
