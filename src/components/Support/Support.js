@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -13,7 +12,7 @@ class Support extends Component {
         support: ''
     }
 
-    // handel change for input of support
+    // handle change for input of support
     handleChange = (event) => {
         console.log('running Handle Change', event.target.value);
         this.setState({

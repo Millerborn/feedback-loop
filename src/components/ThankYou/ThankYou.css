@@ -15,3 +15,7 @@
 #cardHeader {
     background-color: #03a9f4;
 }
+
+#feedback {
+    display: inline;
+}

@@ -8,14 +8,13 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import './Understanding.css';
 
-
 class Understanding extends Component {
     
     state = {
         understanding: ''
     }
 
-    // handel change for input of understanding
+    // handle change for input of understanding
     handleChange = (event) => {
         console.log('running Handle Change', event.target.value);
         this.setState({

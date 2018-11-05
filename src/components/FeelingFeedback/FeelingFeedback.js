@@ -14,7 +14,7 @@ class FeelingFeedback extends Component {
         feeling: ''
     }
 
-    // handel change for input of feeling
+    // handle change for input of feeling
     handleChange = (event) => {
         console.log('running Handle Change', event.target.value);
         this.setState({
