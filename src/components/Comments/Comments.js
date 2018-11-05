@@ -29,6 +29,7 @@ class Comments extends Component {
         event.preventDefault();
         console.log('in handel click push', this.state.comments);
         this.props.history.push('/5')
+        this.props.dispatch( {type: 'ADD_COMMENTS', payload: this.state} );
         this.postFeedback();
     } 
 
@@ -37,16 +38,14 @@ class Comments extends Component {
         console.log('post feedbackRouter :', this.props.reduxState.feedbackRouter);
         axios({
           method: 'POST',
-          url: (`/feedback`, this.props.reduxState.feedbackRouter)
-        //   data: this.state
+          url: (`/feedback`, this.props.reduxState.feedbackRouter),
+          data: this.state
         })
         .then( ( response ) => {
-            console.log('response', response);
-            this.props.dispatch( {type: 'ADD_COMMENT', payload: this.state} );
-            
+            console.log('response', response);            
         })
         .catch( (error) => {
-          alert('Bad things happened!', error);
+          alert('error!', error);
         })
       }
     // postFeedback = () => {
