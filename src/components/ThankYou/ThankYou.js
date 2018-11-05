@@ -1,53 +1,66 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+// import {withRouter} from 'react-router-dom';
 import { connect } from 'react-redux';
-import './ThankYou';
-
+import axios from 'axios';
+import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import './ThankYou.css';
+import Typography from '@material-ui/core/Typography';
+
+/// imported all necessary material UI and react/redux imports
+
+//bringing in reduxState
+const mapReduxStateToProps = ( reduxState ) => ({ reduxState });
+
+
+// console.log('in ThankYou');
 class ThankYou extends Component {
+  
+    ///On submit button this function is sending the new feedback 
+    ///at reduxState and POSTing it.
+    completeFeedback = (props) => {
+        console.log('new feedback', this.props.reduxState.feedbackReducer );
+        // this.props.dispatch({ type: 'ADD_THANKYOU', payload: this.state});
+        this.props.history.push('/');
+        let newFeedback = this.props.reduxState.feedbackReducer;
+        axios({
+            method: 'POST',
+            url: '/feedback',
+            data: newFeedback,
+        })
+        .then((response) => {
+            console.log('sending new feedback to DB', response);
+            
+        })
+        .catch((error) => {
+            console.log('error is POST on ThankYou.js', error);
+            
+        })
 
-    // handle click to leave new feedback
-    handleNextClick = (event) => {
-        event.preventDefault();
-        this.props.history.push('/')
-    } 
-
-//   render() {
-//     return (
-//         <div>
-//             <section>
-//                 <p>Thank You!</p>
-//             </section>
-//             <form onSubmit={this.handleNextClick}>
-//             <button type="submit">Leave New Feedback</button>
-//             </form>
-//         </div>
-//     );
-//   }
-// }
-
-render() {
-    return (
-        <Card id="card">
-            <CardContent>
-                <section>
-                    <h4>Thank You!</h4>
-                </section>
-                <form onSubmit={this.handleNextClick}>
-                <CardActions>
-                <Button id="button" size="small" type="submit">Leave New Feedback</Button>
+    }
+    
+      render() {
+    
+        return (
+            
+         <Card > 
+             <CardContent className="submitButton">
+                 <CardActions>
+                    <Button onClick={this.completeFeedback} variant="outlined" color="primary" type="button" value="HOME">Send Feedback</Button>
                 </CardActions>
-                </form>
             </CardContent>
-        </Card>
-    );
+                <br></br>
+            <CardContent>
+                <Typography color="textSecondary" component="h2" variant="h5">Thank You for your Feedback!</Typography>
+
+                <Typography color="textPrimary" component="h1" variant="h2">YOU ARE AWESOME!</Typography>
+                
+            </CardContent>
+         </Card>  
+        )
+      }
   }
-}
-
-const mapStateToProps = ( reduxState ) => ( { reduxState } ); 
-
-
-export default connect(mapStateToProps)(ThankYou);
+  
+  ///connecting react-redux
+  export default connect(mapReduxStateToProps)(ThankYou);
