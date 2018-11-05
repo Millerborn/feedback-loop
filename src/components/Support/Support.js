@@ -29,18 +29,20 @@ class Support extends Component {
         this.props.dispatch( {type: 'ADD_SUPPORT', payload: this.state} );
         this.props.history.push('/4')
     } 
-
-  render() {
+    
+render() {
     return (
         <Card id="card">
             <CardContent>
                 <h3 id="cardHeader">3 of 4 pages</h3>
-                <section><p>How well are you being supported?</p></section>
+                <section>
+                    <h4>How well are you being supported?</h4>
+                </section>
                 <form onSubmit={this.handleNextClick}>
-                    <input onChange={this.handleChange} value={this.state.support} />
-                    <CardActions>
-                        <Button id="button" size="small" type="submit">Next</Button>
-                    </CardActions>            
+                <input onChange={this.handleChange} value={this.state.feeling} />
+                <CardActions>
+                <Button id="button" size="small" type="submit">Next</Button>
+                </CardActions>
                 </form>
             </CardContent>
         </Card>

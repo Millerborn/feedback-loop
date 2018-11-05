@@ -64,7 +64,7 @@ class AdminView extends Component {
 
     render() {
         return (
-            <div>
+            <div id="table">
                 <table>
                     <thead>
                         <tr>

@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import './Comments.css';
 class Comments extends Component {
 
     state = {
@@ -9,12 +15,12 @@ class Comments extends Component {
 
     // handel change for input of support
     handleChange = (event) => {
-        console.log('running Handle Change', event.target.value);
+        console.log('Handle Change value:', this.state);
         this.setState({
             ...this.state,
             comments: event.target.value
         });
-        this.props.dispatch({
+        this.props.dispatch({            
             type: 'ADD_COMMENTS',
             payload: this.state
         });
@@ -39,18 +45,22 @@ class Comments extends Component {
             });
     }
 
-  render() {
+render() {
     return (
-        <div>
-            <h3>4 of 4 pages</h3>
-            <section>
-                <p>Any Comments you want to share?</p>
-            </section>
-            <form onSubmit={this.handleNextClick}>
-            <input onChange={this.handleChange} value={this.state.comments} />
-            <button type="submit">Submit!</button>
-            </form>
-        </div>
+        <Card id="card">
+            <CardContent>
+                <h3 id="cardHeader">4 of 4 pages</h3>
+                <section>
+                    <h4>Any Comments you want to share?</h4>
+                </section>
+                <form onSubmit={this.handleNextClick}>
+                <input onChange={this.handleChange} value={this.state.comments} />
+                <CardActions>
+                <Button id="button" size="small" type="submit">Next</Button>
+                </CardActions>
+                </form>
+            </CardContent>
+        </Card>
     );
   }
 }

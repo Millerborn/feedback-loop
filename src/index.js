@@ -15,21 +15,21 @@ const getFeedbackReducer = (state=[ ], action) => {
     return state;
 }
 
-const feedbackReducer = (state=[ ], action) => {
+const feedbackReducer = (state= [ ], action) => {
     if (action.type === 'ADD_FEELING') {
         //add feeling feedback to state
         console.log('feeling: ', action.payload);
         state = action.payload 
     } else if (action.type === 'ADD_UNDERSTANDING') {
-        console.log('understanding: ',action.payload);
+        console.log('understanding: ', action.payload);
         state = {...state, ...action.payload}
         //add understanding feedback to state
     } else if (action.type === 'ADD_SUPPORT') {
-        console.log('support: ',action.payload);
+        console.log('support: ', action.payload);
         state = {...state, ...action.payload}
         //add support feedback to state
     } else if (action.type === 'ADD_COMMENTS') {
-        console.log('comment: ',action.payload);
+        console.log('comment: ', action.payload);
         state = {...state, ...action.payload}
         //add comment feedback to state
     }

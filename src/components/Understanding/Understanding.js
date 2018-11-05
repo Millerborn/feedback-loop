@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './Understanding';
+
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import './Understanding.css';
+
+
 class Understanding extends Component {
     
     state = {
@@ -23,18 +32,22 @@ class Understanding extends Component {
         this.props.history.push('/3')
     } 
 
-  render() {
+render() {
     return (
-        <div>
-            <h3>2 of 4 pages</h3>
-            <section>
-                <p>How well are you understanding the content?</p>
-            </section>
-            <form onSubmit={this.handleNextClick}>
-            <input onChange={this.handleChange} value={this.state.understanding} />
-            <button type="submit">Next</button>
-            </form>
-        </div>
+        <Card id="card">
+            <CardContent>
+                <h3 id="cardHeader">2 of 4 pages</h3>
+                <section>
+                    <h4>How well are you understanding the content?</h4>
+                </section>
+                <form onSubmit={this.handleNextClick}>
+                <input onChange={this.handleChange} value={this.state.feeling} />
+                <CardActions>
+                <Button id="button" size="small" type="submit">Next</Button>
+                </CardActions>
+                </form>
+            </CardContent>
+        </Card>
     );
   }
 }
