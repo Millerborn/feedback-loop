@@ -8,11 +8,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-/// imported all necessary material UI and react/redux imports
-
-//bringing in reduxState
-const mapReduxStateToProps = ( reduxState ) => ({ reduxState });
-
 
 // console.log('in ThankYou');
 class ThankYou extends Component {
@@ -52,15 +47,13 @@ class ThankYou extends Component {
             </CardContent>
                 <br></br>
             <CardContent>
-                <Typography color="textSecondary" component="h2" variant="h5">Thank You for your Feedback!</Typography>
-
-                <Typography color="textPrimary" component="h1" variant="h2">YOU ARE AWESOME!</Typography>
-                
+                <Typography color="textSecondary" component="h2" variant="h5">Thanks for your Feedback!</Typography>                
             </CardContent>
          </Card>  
         )
       }
   }
   
-  ///connecting react-redux
+  const mapReduxStateToProps = ( reduxState ) => ({ reduxState });
+
   export default connect(mapReduxStateToProps)(ThankYou);
